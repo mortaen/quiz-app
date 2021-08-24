@@ -1,3 +1,7 @@
 .header {
+    background-color: darkgrey;
+}
+
+.header__title {
     text-align: center;
 }
