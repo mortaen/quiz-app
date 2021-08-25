@@ -38,4 +38,12 @@
     position: absolute;
     top: -2vh;
     right: 2vh;
+    padding: 0;
+    border-color: navy;
+    border-style: solid;
+    height: 42px;
+    border-width: 15px;
+    border-bottom-color: transparent;
+    border-radius: 5px;
+    background-color: transparent;
 }
