@@ -1,7 +1,21 @@
 .card {
     background-color: seashell;
+    
+    z-index: auto;
+    margin-bottom: 1vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
 }
 
 .tags {
     list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+.tags__item {
+    background-color: steelblue;
+    padding-left: 1vh;
+    padding-right: 1vh;
 }
