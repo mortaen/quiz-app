@@ -6,6 +6,7 @@
     margin-bottom: 3vh;
     border: 5px solid #000000;
     border-radius: 15px;
+    position: relative;
 }
 
 .tags {
@@ -31,4 +32,10 @@
 .card__showanswer {
     margin: 0;
     width: 33vw;
+}
+
+.card__bookmark {
+    position: absolute;
+    top: -2vh;
+    right: 2vh;
 }
