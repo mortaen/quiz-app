@@ -8,4 +8,12 @@ html {
   body {
       background-color:slategray;
       margin: 0;
+      display: grid;
+      grid-template-rows: 10vh auto 10vh;
+      height: 100vh;
+  }
+
+  main {
+      padding: 3vh;
+      overflow: auto;
   }
