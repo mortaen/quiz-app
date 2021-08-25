@@ -1,7 +1,6 @@
 .footer {
     width: 100%;
-    background-color: darkgrey;
-    
+    background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
 }
 
 .navbar {

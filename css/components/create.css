@@ -1,33 +1,71 @@
 .questionbox {
-    background-color: lightgrey;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 3vh;
-    border: 5px solid #000000;
+    border: 5px transparent;
     border-radius: 15px;
+    padding-left: 1vh;
+    padding-right: 1vh;
+}
+
+.questionbox__title {
+    margin-bottom: 10px;
+}
+
+.questionbox__writequestion {
+    margin-top: 0;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    font-size: 1.25rem;
 }
 
 .answerbox {
-    background-color: lightgrey;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 3vh;
-    border: 5px solid #000000;
+    border: 5px transparent;
     border-radius: 15px;
+    padding-left: 1vh;
+    padding-right: 1vh;
+}
+
+.answerbox__title {
+    margin-bottom: 10px;
+}
+
+.answerbox__writeanswer {
+    margin-top: 0;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    font-size: 1.25rem;
 }
 
 .tagbox {
-    background-color: lightgrey;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 3vh;
-    border: 5px solid #000000;
+    border: 5px transparent;
     border-radius: 15px;
+    padding-left: 1vh;
+    padding-right: 1vh;
 }
 
+.tagbox__title {
+    margin-bottom: 10px;
+}
+
+.tagbox__writetags {
+    margin-top: 0;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    font-size: 1.25rem;
+}
 .submit-section {
     display: flex;
     justify-content: center;

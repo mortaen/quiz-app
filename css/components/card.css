@@ -1,10 +1,10 @@
 .card {
-    background-color: lightgrey;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 3vh;
-    border: 5px solid #000000;
+    border: 5px transparent;
     border-radius: 15px;
     position: relative;
 }
@@ -17,21 +17,26 @@
 }
 
 .tags__item {
-    background-color: steelblue;
+    background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
     margin-left: 1vh;
     margin-right: 1vh;
     padding: 2px;
-    border: 3px solid steelblue;
+    border: 3px transparent;
     border-radius: 15px;
 }
 
+.card__question {
+    margin-bottom: 10px;
+}
+
 .card__answer {
-    display: none;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
 .card__showanswer {
     margin: 0;
-    width: 33vw;
+    background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
 }
 
 .card__bookmark {
@@ -39,7 +44,7 @@
     top: -2vh;
     right: 2vh;
     padding: 0;
-    border-color: navy;
+    border-color: #fbc2eb;
     border-style: solid;
     height: 42px;
     border-width: 15px;
