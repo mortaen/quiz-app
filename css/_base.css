@@ -11,6 +11,7 @@ html {
       display: grid;
       grid-template-rows: 10vh auto 10vh;
       height: 100vh;
+      font-family: 'Urbanist', sans-serif;
   }
 
   main {
