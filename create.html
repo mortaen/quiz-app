@@ -15,23 +15,22 @@
         <h1 class="header__title">Create</h1>
     </header>
     <main>
-        <section class="questionbox">
-            <h2 class="questionbox__title">What is your question?</h2>
-            <p class="questionbox__writequestion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi,
-                deleniti?</p>
-        </section>
-        <section class="answerbox">
-            <h2 class="answerbox__title">What is the answer?</h2>
-            <p class="answerbox__writeanswer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, dicta
-                saepe. Consectetur doloremque voluptates accusantium?!</p>
-        </section>
-        <section class="tagbox">
-            <h2 class="tagbox__title">Tags</h2>
-            <p class="tagbox__writetags">tag1, tag2, tag3</p>
-        </section>
-        <section class="submit-section">
+        <form class="form">
+
+            <label class="form__label" for="question">What's your question?</label>
+            <textarea id="question" name="question" rows="2" cols="35">Enter your question here...
+            </textarea>
+
+
+            <label class="form__label" for="answer">What is the answer?</label>
+            <textarea id="answer" name="answer" rows="7" cols="35">Enter your answer here...
+            </textarea>
+
+            <label class="form__label" for="question">Tags</label>
+            <input id="question" type="text" placeholder="Enter your tags here..">
+
             <button class="submit-button">Submit</button>
-        </section>
+        </form>
     </main>
     <footer class="footer">
         <nav class="navbar">
