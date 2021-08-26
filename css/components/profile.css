@@ -1,0 +1,24 @@
+.profile {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px transparent;
+    border-radius: 15px;
+    padding: 3vh;
+}
+
+.profile__name {
+    font-size: 1.75rem;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+}
+
+.profile__img {
+height: 50vh;
+width: auto;
+}
+
+.profile__aboutme {
+    font-size: 1.25rem;
+}
