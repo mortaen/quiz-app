@@ -12,14 +12,22 @@
 
 <body>
     <header class="header">
-        <h1 class="header__title">My Profile</h1>
+        <h1 class="header__title">Create Profile</h1>
     </header>
     <main>
-        <section class="profile">
-            <h2 class="profile__name">Rasmus Rasmussen</h2>
-            <img class="profile__img" src="img/head-outline.svg" alt="vector image of a head">
-            <p class="profile__aboutme">Hi, my name is Rasmus Rasmussen and I love me a good quiz!</p>
-        </section>
+        <form class="form">
+            <label class="form__label" for="name">Name:</label>
+            <input class="form__name" id="name" type="text" placeholder="Name hier einfügen...">
+
+            <label class="form__label" for="profile-picture">Profile picture</label>
+            <input id="profile-picture" type="image">
+
+            <label class="form__label" for="about-me">About you</label>
+            <textarea class="form__textarea" id="about-me" name="about-me" rows="7" cols="35"
+                placeholder="Enter something about you here..."></textarea>
+
+            <button class="submit-button" type="submit">Submit</button>
+        </form>
     </main>
     <footer class="footer">
         <nav class="navbar">
