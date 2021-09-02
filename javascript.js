@@ -120,3 +120,9 @@ answerButton4.addEventListener('click', function toggleAnswer() {
 answerButton5.addEventListener('click', function toggleAnswer() {
   answerEl5.classList.toggle('card__answer--hidden')
 })
+
+// form reset
+
+document.querySelector('.submit-button').addEventListener('click', function () {
+  document.querySelector('.form').reset
+})
