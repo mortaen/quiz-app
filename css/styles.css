@@ -2,11 +2,10 @@
 @import './components/card.css';
 @import './components/header.css';
 @import './components/footer.css';
-@import './components/form.css';
+@import './components/create.css';
 @import './components/profile.css';
+@import './components/main.css';
 @font-face {
-    font-family: 'Urbanist', sans-serif;
-    ;
-    src: url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
+  font-family: 'Urbanist', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
 }
-
