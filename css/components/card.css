@@ -55,19 +55,9 @@
 
 .card__bookmark {
   position: absolute;
-  top: -2vh;
-  right: 2vh;
+  top: -20px;
+  right: 0.5vw;
   padding: 0;
-  border-color: #fbc2eb;
-  border-style: solid;
-  height: 42px;
-  border-width: 15px;
-  border-bottom-color: transparent;
-  border-radius: 5px;
+  border-color: transparent;
   background-color: transparent;
-}
-
-.card__bookmark.card__bookmark--bookmarked {
-  border-color: navy;
-  border-bottom-color: transparent;
 }

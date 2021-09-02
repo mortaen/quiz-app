@@ -3,8 +3,6 @@ const bookmarksMain = document.querySelector('.bookmarks')
 const createMain = document.querySelector('.create')
 const profileMain = document.querySelector('.profile')
 
-const bookmarkButton = document.querySelector('.card__bookmark')
-
 const homeHeader = document.querySelector('.home-header')
 const bookmarksHeader = document.querySelector('.bookmarks-header')
 const createHeader = document.querySelector('.create-header')
@@ -53,13 +51,22 @@ profileButton.addEventListener('click', () => {
   profileHeader.classList.remove('header--hidden')
 })
 
-// bookmarkButton
+// bookmark toggle
 
-// bookmarkButton.addEventListener('click', () => {
-//   bookmarkButton.classList.add('card__bookmark--bookmarked')
-// })
+const bookmarkElArray = document.querySelectorAll('.card__bookmark')
 
-bookmarkButton.addEventListener('click', function (e) {
-  const bookmarkToggle = e.bookmarkToggle
-  bookmarkToggle.classList.toggle('')
+bookmarkElArray.forEach((bookmarkEl, index) => {
+  bookmarkEl.innerHTML = 'bookmark_border'
 })
+
+bookmarkElArray.forEach((bookmarkEl, index) => {
+  bookmarkEl.addEventListener('click', function toggleBookmark() {
+    if (bookmarkEl.innerHTML === 'bookmark_border') {
+      bookmarkEl.innerHTML = 'bookmark'
+    } else if (bookmarkEl.innerHTML === 'bookmark') {
+      bookmarkEl.innerHTML = 'bookmark_border'
+    }
+  })
+})
+
+//answer card toggle
