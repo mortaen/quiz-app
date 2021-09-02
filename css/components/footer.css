@@ -11,7 +11,6 @@
 }
 
 .navbar__link {
-  text-decoration: none;
   background: transparent;
 }
 
@@ -26,5 +25,5 @@
 }
 
 .material-icons.md-light {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255);
 }
