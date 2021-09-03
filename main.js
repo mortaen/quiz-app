@@ -7,6 +7,13 @@ const homeHeader = document.querySelector('.home-header')
 const bookmarksHeader = document.querySelector('.bookmarks-header')
 const createHeader = document.querySelector('.create-header')
 const profileHeader = document.querySelector('.profile-header')
+const headerElArray = document.querySelectorAll('.header')
+
+const footerEl = document.querySelector('.footer')
+
+const cardElArray = document.querySelectorAll('.card')
+
+// navigation
 
 const homeButton = document.querySelector('#home-button')
 const bookmarksButton = document.querySelector('#bookmarks-button')
@@ -19,8 +26,6 @@ function hideAll() {
   mainElArray.forEach((mainEl, index) => {
     mainEl.classList.add('main--hidden')
   })
-
-  const headerElArray = document.querySelectorAll('.header')
 
   headerElArray.forEach((headerEl, index) => {
     headerEl.classList.add('header--hidden')
@@ -119,8 +124,42 @@ const cardBookmark1 = document.querySelector('.card__bookmark1')
 for (let i = 0; i < bookmarkElArray.length; i++) {
   bookmarkElArray[i].addEventListener('click', () => {
     if (bookmarkElArray[i].innerText === 'bookmark') {
-      const clonedCard = bookmarkElArray[i].parentElement.cloneNode(true)
+      let clonedCard = bookmarkElArray[i].parentElement.cloneNode(true)
       bookmarksMain.appendChild(clonedCard)
     }
   })
 }
+
+// darkmode
+
+const darkmodeSwitch = document.querySelector('.darkmode-switch')
+
+const textareaArray = document.querySelectorAll('.form__textarea')
+
+darkmodeSwitch.addEventListener('click', () => {
+  document.querySelector('body').classList.toggle('darkmode')
+
+  headerElArray.forEach(headerEl => {
+    headerEl.classList.toggle('header--darkmode')
+  })
+
+  footerEl.classList.toggle('footer--darkmode')
+
+  cardElArray.forEach(cardEl => {
+    cardEl.classList.toggle('darkmode')
+  })
+
+  document.querySelector('.form').classList.toggle('darkmode')
+
+  textareaArray.forEach(textareaEl => {
+    textareaEl.classList.toggle('darkmode')
+  })
+
+  document.querySelector('.profile__section').classList.toggle('darkmode')
+
+  if (darkmodeSwitch.innerHTML === 'toggle_off') {
+    darkmodeSwitch.innerHTML = 'toggle_on'
+  } else {
+    darkmodeSwitch.innerHTML = 'toggle_off'
+  }
+})
