@@ -123,6 +123,6 @@ answerButton5.addEventListener('click', function toggleAnswer() {
 
 // form reset
 
-document.querySelector('.submit-button').addEventListener('click', function () {
-  document.querySelector('.form').reset
-})
+function resetForm() {
+  document.querySelector('.form').reset()
+}
