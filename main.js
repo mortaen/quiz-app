@@ -31,24 +31,40 @@ homeButton.addEventListener('click', () => {
   hideAll()
   homeMain.classList.remove('main--hidden')
   homeHeader.classList.remove('header--hidden')
+  homeButton.classList.add('md-light')
+  bookmarksButton.classList.remove('md-light')
+  createButton.classList.remove('md-light')
+  profileButton.classList.remove('md-light')
 })
 
 bookmarksButton.addEventListener('click', () => {
   hideAll()
   bookmarksMain.classList.remove('main--hidden')
   bookmarksHeader.classList.remove('header--hidden')
+  homeButton.classList.remove('md-light')
+  bookmarksButton.classList.add('md-light')
+  createButton.classList.remove('md-light')
+  profileButton.classList.remove('md-light')
 })
 
 createButton.addEventListener('click', () => {
   hideAll()
   createMain.classList.remove('main--hidden')
   createHeader.classList.remove('header--hidden')
+  homeButton.classList.remove('md-light')
+  bookmarksButton.classList.remove('md-light')
+  createButton.classList.add('md-light')
+  profileButton.classList.remove('md-light')
 })
 
 profileButton.addEventListener('click', () => {
   hideAll()
   profileMain.classList.remove('main--hidden')
   profileHeader.classList.remove('header--hidden')
+  homeButton.classList.remove('md-light')
+  bookmarksButton.classList.remove('md-light')
+  createButton.classList.remove('md-light')
+  profileButton.classList.add('md-light')
 })
 
 // bookmark toggle
