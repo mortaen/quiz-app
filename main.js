@@ -105,3 +105,22 @@ for (let i = 0; i < answerButtons.length; i++) {
 function resetForm() {
   document.querySelector('.form').reset()
 }
+
+// get bookmarked cards to appear on bookmarks page
+
+const answerCards = document.querySelectorAll('.card')
+
+const cardBookmark1 = document.querySelector('.card__bookmark1')
+
+// const bookmarkedCard = document.querySelector('.card1')
+// const clonedCard = bookmarkedCard.cloneNode(true)
+// bookmarksMain.appendChild(clonedCard)
+
+for (let i = 0; i < bookmarkElArray.length; i++) {
+  bookmarkElArray[i].addEventListener('click', () => {
+    if (bookmarkElArray[i].innerText === 'bookmark') {
+      const clonedCard = bookmarkElArray[i].parentElement.cloneNode(true)
+      bookmarksMain.appendChild(clonedCard)
+    }
+  })
+}
