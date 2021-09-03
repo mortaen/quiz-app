@@ -32,6 +32,7 @@
 
 .card__question {
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .card__answer {
