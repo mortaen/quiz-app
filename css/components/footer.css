@@ -12,6 +12,7 @@
 
 .navbar__link {
   background: transparent;
+  border: none;
 }
 
 .material-icons {
