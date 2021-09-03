@@ -71,55 +71,18 @@ bookmarkElArray.forEach((bookmarkEl, index) => {
 
 // answer card toggle
 
-const answerElArray = document.querySelectorAll('.card__answer')
+const answerButtons = document.querySelectorAll('.card__answerbutton')
 
-answerElArray.forEach((answerEl, index) => {
-  answerEl.classList.add('card__answer--hidden')
-})
-
-const answerButtonArray = document.querySelectorAll('.card__answerbutton')
-
-answerButtonArray.forEach((answerButton, index) => {
-  answerButton.addEventListener('click', function changeAnswerButtonText() {
-    if (answerButton.innerText === 'show answer') {
-      answerButton.innerText = 'hide answer'
-    } else if (answerButton.innerText === 'hide answer') {
-      answerButton.innerText = 'show answer'
+for (let i = 0; i < answerButtons.length; i++) {
+  answerButtons[i].addEventListener('click', () => {
+    answerButtons[i].nextElementSibling.classList.toggle('card__answer--hidden')
+    if (answerButtons[i].innerText === 'show answer') {
+      answerButtons[i].innerText = 'hide answer'
+    } else {
+      answerButtons[i].innerText = 'show answer'
     }
   })
-})
-
-const answerEl1 = document.querySelector('.card__answer1')
-const answerEl2 = document.querySelector('.card__answer2')
-const answerEl3 = document.querySelector('.card__answer3')
-const answerEl4 = document.querySelector('.card__answer4')
-const answerEl5 = document.querySelector('.card__answer5')
-
-const answerButton1 = document.querySelector('.card__answerbutton1')
-const answerButton2 = document.querySelector('.card__answerbutton2')
-const answerButton3 = document.querySelector('.card__answerbutton3')
-const answerButton4 = document.querySelector('.card__answerbutton4')
-const answerButton5 = document.querySelector('.card__answerbutton5')
-
-answerButton1.addEventListener('click', function toggleAnswer() {
-  answerEl1.classList.toggle('card__answer--hidden')
-})
-
-answerButton2.addEventListener('click', function toggleAnswer() {
-  answerEl2.classList.toggle('card__answer--hidden')
-})
-
-answerButton3.addEventListener('click', function toggleAnswer() {
-  answerEl3.classList.toggle('card__answer--hidden')
-})
-
-answerButton4.addEventListener('click', function toggleAnswer() {
-  answerEl4.classList.toggle('card__answer--hidden')
-})
-
-answerButton5.addEventListener('click', function toggleAnswer() {
-  answerEl5.classList.toggle('card__answer--hidden')
-})
+}
 
 // form reset
 
