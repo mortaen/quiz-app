@@ -113,19 +113,17 @@ function resetForm() {
 
 // get bookmarked cards to appear on bookmarks page
 
-const answerCards = document.querySelectorAll('.card')
-
-const cardBookmark1 = document.querySelector('.card__bookmark1')
-
-// const bookmarkedCard = document.querySelector('.card1')
-// const clonedCard = bookmarkedCard.cloneNode(true)
-// bookmarksMain.appendChild(clonedCard)
+bookmarksButton.addEventListener('click', () => {
+  while (bookmarksMain.lastChild) {
+    bookmarksMain.removeChild(bookmarksMain.lastChild)
+  }
+})
 
 for (let i = 0; i < bookmarkElArray.length; i++) {
-  bookmarkElArray[i].addEventListener('click', () => {
+  bookmarksButton.addEventListener('click', () => {
     if (bookmarkElArray[i].innerText === 'bookmark') {
-      let clonedCard = bookmarkElArray[i].parentElement.cloneNode(true)
-      bookmarksMain.appendChild(clonedCard)
+      let bookmarkedCard = bookmarkElArray[i].parentElement.cloneNode(true)
+      bookmarksMain.appendChild(bookmarkedCard)
     }
   })
 }
