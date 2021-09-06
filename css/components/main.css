@@ -1,3 +1,17 @@
+main {
+  padding: 3vh;
+  overflow: auto;
+}
+
 .main--hidden {
   display: none;
+}
+
+.darkmode-switch {
+  position: absolute;
+  right: 2vw;
+  top: 1vh;
+  padding: 0;
+  border-color: transparent;
+  background-color: transparent;
 }
