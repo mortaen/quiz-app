@@ -16,11 +16,9 @@ const profileButton = document.querySelector('#profile-button')
 
 const footerEl = document.querySelector('.footer')
 
-const cardElArray = document.querySelectorAll('.card')
+// card data array
 
-// Array for Cards
-
-const cardsDataArray = [
+const cardDataArray = [
   {
     question: `Who was La Liga's Top Scorer in 2020/2021?`,
     answer: 'Lionel Messi',
@@ -37,7 +35,7 @@ const cardsDataArray = [
   {
     question: 'Which bmx rider won the most X Games medals?',
     answer: 'Dave Mirra won 24 X Games Medals over 19 appearances.',
-    isBookmarked: false,
+    isBookmarked: true,
     tags: ['BMS', 'X Games', 'Sports'],
   },
   {
@@ -49,27 +47,12 @@ const cardsDataArray = [
   },
 ]
 
-//function to empty homeMain element
-
-function emptyHomeMain() {
-  while (homeMain.lastChild) {
-    homeMain.removeChild(homeMain.lastChild)
-  }
-}
-
-// empty homeMain on load
-
-homeMain.addEventListener('load', () => {
-  homeMain.innerHTML = ''
-  console.log('homeMain emptied')
-})
-
 // function to render array objects in html
 
-function renderCard(cardData) {
+function renderCard(cardData, mainEl) {
   const cardSection = document.createElement('section')
   cardSection.classList.add('card')
-  homeMain.appendChild(cardSection)
+  mainEl.appendChild(cardSection)
 
   const cardBookmark = document.createElement('button')
   cardBookmark.classList.add('card__bookmark', 'material-icons', 'md-48')
@@ -104,25 +87,105 @@ function renderCard(cardData) {
   })
 }
 
-// renderCard(cardsDataArray[0])
+// empty homeMain on load and load data from array
 
-//render each card of cardsDataArray
-
-cardsDataArray.forEach(cardData => {
-  renderCard(cardData)
+window.addEventListener('load', () => {
+  homeMain.innerHTML = ''
+  cardDataArray.forEach(cardData => {
+    renderCard(cardData, homeMain)
+  })
+  toggleBookmark()
+  toggleAnswer()
+  addDarkmodeSwitch()
 })
 
 //empty homeMain on click and reload data from array
 
 homeButton.addEventListener('click', () => {
-  emptyHomeMain()
-  cardsDataArray.forEach(cardData => {
-    renderCard(cardData)
+  homeMain.innerHTML = ''
+  cardDataArray.forEach(cardData => {
+    renderCard(cardData, homeMain)
   })
+  toggleBookmark()
+  toggleAnswer()
+  addDarkmodeSwitch()
+})
+
+// render cards for bookmarks page in html
+
+bookmarksButton.addEventListener('click', () => {
+  const bookmarkedCards = cardDataArray.filter(
+    card => card.isBookmarked === 'true'
+  )
+  bookmarkedCards.forEach(cardData => {
+    renderCard(cardData, bookmarksMain)
+  })
+})
+
+// darkmode switch function
+
+function addDarkmodeSwitch() {
+  const darkmodeSwitchButton = document.createElement('button')
+  darkmodeSwitchButton.classList.add(
+    'darkmode-switch',
+    'material-icons',
+    'md-48'
+  )
+  darkmodeSwitchButton.innerText = 'toggle_off'
+  homeMain.appendChild(darkmodeSwitchButton)
+  const darkmodeSwitch = document.querySelector('.darkmode-switch')
+
+  const textareaArray = document.querySelectorAll('.form__textarea')
+
+  darkmodeSwitch.addEventListener('click', () => {
+    document.querySelector('body').classList.toggle('darkmode')
+
+    headerElArray.forEach(headerEl => {
+      headerEl.classList.toggle('header--darkmode')
+    })
+
+    footerEl.classList.toggle('footer--darkmode')
+
+    const cardElArray = document.querySelectorAll('.card')
+    cardElArray.forEach(cardEl => {
+      cardEl.classList.toggle('darkmode')
+    })
+
+    document.querySelector('.form').classList.toggle('darkmode')
+
+    textareaArray.forEach(textareaEl => {
+      textareaEl.classList.toggle('darkmode')
+    })
+
+    document.querySelector('.profile__section').classList.toggle('darkmode')
+
+    if (darkmodeSwitch.innerHTML === 'toggle_off') {
+      darkmodeSwitch.innerHTML = 'toggle_on'
+    } else {
+      darkmodeSwitch.innerHTML = 'toggle_off'
+    }
+  })
+}
+
+// bookmark toggle function
+
+function toggleBookmark() {
+  const bookmarkElArray = document.querySelectorAll('.card__bookmark')
+
   bookmarkElArray.forEach((bookmarkEl, index) => {
     bookmarkEl.innerHTML = 'bookmark_border'
   })
-})
+
+  bookmarkElArray.forEach((bookmarkEl, index) => {
+    bookmarkEl.addEventListener('click', function toggleBookmark() {
+      if (bookmarkEl.innerHTML === 'bookmark_border') {
+        bookmarkEl.innerHTML = 'bookmark'
+      } else if (bookmarkEl.innerHTML === 'bookmark') {
+        bookmarkEl.innerHTML = 'bookmark_border'
+      }
+    })
+  })
+}
 
 // navigation
 
@@ -178,37 +241,22 @@ profileButton.addEventListener('click', () => {
   profileButton.classList.add('md-light')
 })
 
-// bookmark toggle
+// answer toggle
+function toggleAnswer() {
+  const answerButtons = document.querySelectorAll('.card__answerbutton')
 
-const bookmarkElArray = document.querySelectorAll('.card__bookmark')
-
-bookmarkElArray.forEach((bookmarkEl, index) => {
-  bookmarkEl.innerHTML = 'bookmark_border'
-})
-
-bookmarkElArray.forEach((bookmarkEl, index) => {
-  bookmarkEl.addEventListener('click', function toggleBookmark() {
-    if (bookmarkEl.innerHTML === 'bookmark_border') {
-      bookmarkEl.innerHTML = 'bookmark'
-    } else if (bookmarkEl.innerHTML === 'bookmark') {
-      bookmarkEl.innerHTML = 'bookmark_border'
-    }
-  })
-})
-
-// answer card toggle
-
-const answerButtons = document.querySelectorAll('.card__answerbutton')
-
-for (let i = 0; i < answerButtons.length; i++) {
-  answerButtons[i].addEventListener('click', () => {
-    answerButtons[i].nextElementSibling.classList.toggle('card__answer--hidden')
-    if (answerButtons[i].innerText === 'show answer') {
-      answerButtons[i].innerText = 'hide answer'
-    } else {
-      answerButtons[i].innerText = 'show answer'
-    }
-  })
+  for (let i = 0; i < answerButtons.length; i++) {
+    answerButtons[i].addEventListener('click', () => {
+      answerButtons[i].nextElementSibling.classList.toggle(
+        'card__answer--hidden'
+      )
+      if (answerButtons[i].innerText === 'show answer') {
+        answerButtons[i].innerText = 'hide answer'
+      } else {
+        answerButtons[i].innerText = 'show answer'
+      }
+    })
+  }
 }
 
 // form reset
@@ -219,51 +267,17 @@ function resetForm() {
 
 // get bookmarked cards to appear on bookmarks page
 
-bookmarksButton.addEventListener('click', () => {
-  while (bookmarksMain.lastChild) {
-    bookmarksMain.removeChild(bookmarksMain.lastChild)
-  }
-})
+// bookmarksButton.addEventListener('click', () => {
+//   while (bookmarksMain.lastChild) {
+//     bookmarksMain.removeChild(bookmarksMain.lastChild)
+//   }
+// })
 
-for (let i = 0; i < bookmarkElArray.length; i++) {
-  bookmarksButton.addEventListener('click', () => {
-    if (bookmarkElArray[i].innerText === 'bookmark') {
-      let bookmarkedCard = bookmarkElArray[i].parentElement.cloneNode(true)
-      bookmarksMain.appendChild(bookmarkedCard)
-    }
-  })
-}
-
-// darkmode
-
-const darkmodeSwitch = document.querySelector('.darkmode-switch')
-
-const textareaArray = document.querySelectorAll('.form__textarea')
-
-darkmodeSwitch.addEventListener('click', () => {
-  document.querySelector('body').classList.toggle('darkmode')
-
-  headerElArray.forEach(headerEl => {
-    headerEl.classList.toggle('header--darkmode')
-  })
-
-  footerEl.classList.toggle('footer--darkmode')
-
-  cardElArray.forEach(cardEl => {
-    cardEl.classList.toggle('darkmode')
-  })
-
-  document.querySelector('.form').classList.toggle('darkmode')
-
-  textareaArray.forEach(textareaEl => {
-    textareaEl.classList.toggle('darkmode')
-  })
-
-  document.querySelector('.profile__section').classList.toggle('darkmode')
-
-  if (darkmodeSwitch.innerHTML === 'toggle_off') {
-    darkmodeSwitch.innerHTML = 'toggle_on'
-  } else {
-    darkmodeSwitch.innerHTML = 'toggle_off'
-  }
-})
+// for (let i = 0; i < bookmarkElArray.length; i++) {
+//   bookmarksButton.addEventListener('click', () => {
+//     if (bookmarkElArray[i].innerText === 'bookmark') {
+//       let bookmarkedCard = bookmarkElArray[i].parentElement.cloneNode(true)
+//       bookmarksMain.appendChild(bookmarkedCard)
+//     }
+//   })
+// }
