@@ -7,14 +7,17 @@ const homeHeader = document.querySelector('.home-header')
 const bookmarksHeader = document.querySelector('.bookmarks-header')
 const createHeader = document.querySelector('.create-header')
 const profileHeader = document.querySelector('.profile-header')
-const headerElArray = document.querySelectorAll('.header')
 
 const homeButton = document.querySelector('#home-button')
 const bookmarksButton = document.querySelector('#bookmarks-button')
 const createButton = document.querySelector('#create-button')
 const profileButton = document.querySelector('#profile-button')
 
-const footerEl = document.querySelector('.footer')
+import { resetForm } from './modules/resetform'
+import { toggleBookmark } from './modules/toggleBookmark'
+import { toggleAnswer } from './modules/toggleAnswer'
+import { hideAll } from './modules/hideAll'
+import { addDarkmodeSwitch } from './modules/darkmode'
 
 // card data array
 
@@ -87,22 +90,9 @@ function renderCard(cardData, targetEl) {
   })
 }
 
-//create question
-
-function addQuestion(question, answer, tags) {
-  cardDataArray.push(question, answer, tags)
-}
-
 // empty homeMain and bookmarksMain on load and load data from array
 
 window.addEventListener('load', () => {
-  // addQuestion({
-  //   question: 'Will this work?',
-  //   answer: 'hopefully',
-  //   isBookmarked: false,
-  //   showAnswer: false,
-  //   tags: ['experiment', 'js'],
-  // })
   reloadHomeMain()
   reloadBookmarksMain()
 })
@@ -111,13 +101,9 @@ window.addEventListener('load', () => {
 
 homeButton.addEventListener('click', () => {
   reloadHomeMain()
+  toggleBookmark()
+  toggleAnswer()
 })
-
-// filter cardDataArray, so that it only contains bookmarked cards
-
-const bookmarkedCardsArray = cardDataArray.filter(
-  card => card.isBookmarked === true
-)
 
 //homeMain: render cards and add toggles and darkmodeSwitch
 
@@ -126,10 +112,16 @@ function reloadHomeMain() {
   cardDataArray.forEach(cardData => {
     renderCard(cardData, homeMain)
   })
-  toggleBookmark()
-  toggleAnswer()
+  // toggleBookmark()
+  // toggleAnswer()
   addDarkmodeSwitch()
 }
+
+// filter cardDataArray, so that it only contains bookmarked cards
+
+const bookmarkedCardsArray = cardDataArray.filter(
+  card => card.isBookmarked === true
+)
 
 //bookmarksMain: render cards and add toggles
 
@@ -142,84 +134,23 @@ function reloadBookmarksMain() {
   toggleAnswer()
 }
 
-// darkmode switch function
+//create question
 
-function addDarkmodeSwitch() {
-  const darkmodeSwitchButton = document.createElement('button')
-  darkmodeSwitchButton.classList.add(
-    'darkmode-switch',
-    'material-icons',
-    'md-48'
-  )
-  darkmodeSwitchButton.innerText = 'toggle_off'
-  homeMain.appendChild(darkmodeSwitchButton)
-  const darkmodeSwitch = document.querySelector('.darkmode-switch')
-
-  const textareaArray = document.querySelectorAll('.form__textarea')
-
-  darkmodeSwitch.addEventListener('click', () => {
-    document.querySelector('body').classList.toggle('darkmode')
-
-    headerElArray.forEach(headerEl => {
-      headerEl.classList.toggle('header--darkmode')
-    })
-
-    footerEl.classList.toggle('footer--darkmode')
-
-    const cardElArray = document.querySelectorAll('.card')
-    cardElArray.forEach(cardEl => {
-      cardEl.classList.toggle('darkmode')
-    })
-
-    document.querySelector('.form').classList.toggle('darkmode')
-
-    textareaArray.forEach(textareaEl => {
-      textareaEl.classList.toggle('darkmode')
-    })
-
-    document.querySelector('.profile__section').classList.toggle('darkmode')
-
-    if (darkmodeSwitch.innerHTML === 'toggle_off') {
-      darkmodeSwitch.innerHTML = 'toggle_on'
-    } else {
-      darkmodeSwitch.innerHTML = 'toggle_off'
-    }
-  })
+function addQuestion(question, answer, isBookmarked, tags) {
+  cardDataArray.push(question, answer, isBookmarked, tags)
 }
 
-// bookmark toggle function
-
-function toggleBookmark() {
-  const bookmarkElArray = document.querySelectorAll('.card__bookmark')
-
-  bookmarkElArray.forEach((bookmarkEl, index) => {
-    bookmarkEl.innerHTML = 'bookmark_border'
+document.querySelector('.submit-button').addEventListener('click', () => {
+  addQuestion({
+    question: 'will this work?',
+    answer: 'hopefully',
+    isBookmarked: false,
+    tags: ['experiment', 'js'],
   })
-
-  bookmarkElArray.forEach((bookmarkEl, index) => {
-    bookmarkEl.addEventListener('click', function changeBookmark() {
-      if (bookmarkEl.innerHTML === 'bookmark_border') {
-        bookmarkEl.innerHTML = 'bookmark'
-      } else if (bookmarkEl.innerHTML === 'bookmark') {
-        bookmarkEl.innerHTML = 'bookmark_border'
-      }
-    })
-  })
-}
+  resetForm()
+})
 
 // navigation
-
-function hideAll() {
-  const mainElArray = document.querySelectorAll('.main')
-
-  mainElArray.forEach((mainEl, index) => {
-    mainEl.classList.add('main--hidden')
-  })
-
-  headerElArray.forEach((headerEl, index) => {
-    headerEl.classList.add('header--hidden')
-  })
-}
 
 homeButton.addEventListener('click', () => {
   hideAll()
@@ -260,30 +191,6 @@ profileButton.addEventListener('click', () => {
   createButton.classList.remove('md-light')
   profileButton.classList.add('md-light')
 })
-
-// answer toggle
-function toggleAnswer() {
-  const answerButtons = document.querySelectorAll('.card__answerbutton')
-
-  for (let i = 0; i < answerButtons.length; i++) {
-    answerButtons[i].addEventListener('click', () => {
-      answerButtons[i].nextElementSibling.classList.toggle(
-        'card__answer--hidden'
-      )
-      if (answerButtons[i].innerText === 'show answer') {
-        answerButtons[i].innerText = 'hide answer'
-      } else {
-        answerButtons[i].innerText = 'show answer'
-      }
-    })
-  }
-}
-
-// form reset
-
-function resetForm() {
-  document.querySelector('.form').reset()
-}
 
 // get bookmarked cards to appear on bookmarks page
 
