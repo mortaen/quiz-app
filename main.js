@@ -49,10 +49,10 @@ const cardDataArray = [
 
 // function to render array objects in html
 
-function renderCard(cardData, mainEl) {
+function renderCard(cardData, targetEl) {
   const cardSection = document.createElement('section')
   cardSection.classList.add('card')
-  mainEl.appendChild(cardSection)
+  targetEl.appendChild(cardSection)
 
   const cardBookmark = document.createElement('button')
   cardBookmark.classList.add('card__bookmark', 'material-icons', 'md-48')
@@ -87,21 +87,41 @@ function renderCard(cardData, mainEl) {
   })
 }
 
-// empty homeMain on load and load data from array
+//create question
+
+function addQuestion(question, answer, tags) {
+  cardDataArray.push(question, answer, tags)
+}
+
+// empty homeMain and bookmarksMain on load and load data from array
 
 window.addEventListener('load', () => {
-  homeMain.innerHTML = ''
-  cardDataArray.forEach(cardData => {
-    renderCard(cardData, homeMain)
-  })
-  toggleBookmark()
-  toggleAnswer()
-  addDarkmodeSwitch()
+  // addQuestion({
+  //   question: 'Will this work?',
+  //   answer: 'hopefully',
+  //   isBookmarked: false,
+  //   showAnswer: false,
+  //   tags: ['experiment', 'js'],
+  // })
+  reloadHomeMain()
+  reloadBookmarksMain()
 })
 
 //empty homeMain on click and reload data from array
 
 homeButton.addEventListener('click', () => {
+  reloadHomeMain()
+})
+
+// filter cardDataArray, so that it only contains bookmarked cards
+
+const bookmarkedCardsArray = cardDataArray.filter(
+  card => card.isBookmarked === true
+)
+
+//homeMain: render cards and add toggles and darkmodeSwitch
+
+function reloadHomeMain() {
   homeMain.innerHTML = ''
   cardDataArray.forEach(cardData => {
     renderCard(cardData, homeMain)
@@ -109,18 +129,18 @@ homeButton.addEventListener('click', () => {
   toggleBookmark()
   toggleAnswer()
   addDarkmodeSwitch()
-})
+}
 
-// render cards for bookmarks page in html
+//bookmarksMain: render cards and add toggles
 
-bookmarksButton.addEventListener('click', () => {
-  const bookmarkedCards = cardDataArray.filter(
-    card => card.isBookmarked === 'true'
-  )
-  bookmarkedCards.forEach(cardData => {
+function reloadBookmarksMain() {
+  bookmarksMain.innerHTML = ''
+  bookmarkedCardsArray.forEach(cardData => {
     renderCard(cardData, bookmarksMain)
   })
-})
+  toggleBookmark()
+  toggleAnswer()
+}
 
 // darkmode switch function
 
@@ -177,7 +197,7 @@ function toggleBookmark() {
   })
 
   bookmarkElArray.forEach((bookmarkEl, index) => {
-    bookmarkEl.addEventListener('click', function toggleBookmark() {
+    bookmarkEl.addEventListener('click', function changeBookmark() {
       if (bookmarkEl.innerHTML === 'bookmark_border') {
         bookmarkEl.innerHTML = 'bookmark'
       } else if (bookmarkEl.innerHTML === 'bookmark') {
