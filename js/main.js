@@ -140,12 +140,16 @@ function addQuestion(question, answer, isBookmarked, tags) {
   cardDataArray.push(question, answer, isBookmarked, tags)
 }
 
+// subit new question
+
 document.querySelector('.submit-button').addEventListener('click', () => {
+  const splitTags = document.querySelector('#textarea-tags').value.split(', ')
+
   addQuestion({
-    question: 'will this work?',
-    answer: 'hopefully',
+    question: document.querySelector('#textarea-question').value,
+    answer: document.querySelector('#textarea-answer').value,
     isBookmarked: false,
-    tags: ['experiment', 'js'],
+    tags: splitTags,
   })
   resetForm()
 })
